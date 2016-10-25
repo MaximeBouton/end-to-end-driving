@@ -8,5 +8,8 @@ CS221-CS229 Class project. The objective is to predict steering command from raw
 *src*: host the main programs
 *proposal*: host the project proposal
 
+## Dependency
 
+- Python 2.7
+- OpenCV for python
 
