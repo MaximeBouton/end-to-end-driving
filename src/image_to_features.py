@@ -32,7 +32,7 @@ for r in ranges:
 m = len(bigRange)
 print m
 w,h = 640,480
-red = 10 
+red = 1 
 w_,h_ = w/red,h/red
 
 Phi = np.zeros((m,w_,h_,3))
