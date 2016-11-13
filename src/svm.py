@@ -4,7 +4,7 @@ import math
 
 ## Load the dataset
 
-X = np.load('features.npy')
+X = np.load('features10.npy')
 Y = np.load('labels.npy')
 m = len(Y)
 
