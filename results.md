@@ -1,5 +1,10 @@
 # Some raw output
 
+## 3 classes classification
+
+### Basic test
+
+```
 Train on 8539 samples, validate on 3660 samples
 Epoch 1/10
 8539/8539 [==============================] - 335s - loss: 0.4914 - acc: 0.8644 - val_loss: 1.7789 - val_acc: 0.3339
@@ -21,4 +26,9 @@ Epoch 9/10
 8539/8539 [==============================] - 335s - loss: 0.0720 - acc: 0.9737 - val_loss: 5.3931 - val_acc: 0.3421
 Epoch 10/10
 8539/8539 [==============================] - 336s - loss: 0.0658 - acc: 0.9763 - val_loss: 5.1277 - val_acc: 0.3475
+```
+
+###  With data shuffling
+
+## 5 classes classification
 
