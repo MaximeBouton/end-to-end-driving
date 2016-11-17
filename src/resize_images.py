@@ -25,7 +25,7 @@ for r in ranges:
 m = len(bigRange)
 print m
 w,h = 640,480
-red = 5  # resizing factor
+red = 8  # resizing factor
 w_,h_ = w/red,h/red
 
 Phi = np.zeros((m,h_,w_,3))
@@ -43,8 +43,9 @@ for (i,j) in enumerate(bigRange):
     resized_img = cv2.resize(image, (w_,h_), interpolation = cv2.INTER_AREA)
     Phi[i,:,:,:] = resized_img
 
-# Save feature matrix to file 
-np.save('resized_features5.npy',Phi)
+# Save feature matrix to file
+fname = 'resized_fetures' + str(red) + '.npy' 
+np.save(fname,Phi)
 
 
 
