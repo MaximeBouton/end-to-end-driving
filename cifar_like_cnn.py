@@ -16,11 +16,12 @@ from keras.layers import Dense, Dropout, Activation, Flatten
 from keras.layers import Convolution2D, MaxPooling2D
 from keras.optimizers import SGD
 from keras.utils import np_utils
+from keras.callbacks import ModelCheckpoint
 import numpy as np
 
 batch_size = 32
 nb_classes = 3
-nb_epoch = 1
+nb_epoch = 2
 data_augmentation = False
 
 # input image dimensions
@@ -147,6 +148,12 @@ model.add(Dropout(0.5))
 model.add(Dense(nb_classes))
 model.add(Activation('softmax'))
 
+# Define a Callback function to measure test error
+    
+        
+checkpointer = ModelCheckpoint(filepath='tmp/weights.{epoch:02d}', verbose=1, save_best_only=False)
+
+
 # let's train the model using SGD + momentum (how original).
 sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='categorical_crossentropy',
@@ -167,7 +174,8 @@ if not data_augmentation:
               batch_size=batch_size,
               nb_epoch=nb_epoch,
               validation_data=(X_val, Y_val),
-              shuffle=True)
+              shuffle=True,
+              callbacks = [checkpointer])
 else:
     print('Using real-time data augmentation.')
 
@@ -193,14 +201,18 @@ else:
                         batch_size=batch_size),
                         samples_per_epoch=X_train.shape[0],
                         nb_epoch=nb_epoch,
-                        validation_data=(X_val, Y_val))
+                        validation_data=(X_val, Y_val),
+                        callbacks = [checkpointer])
 
 
 #### MODEL EVALUATION
 
-model.evaluate(X_test,y_test,
-	       batch_size = batch_size,
-               verbose=1)
+testLoss, testAcc = model.evaluate(X_test,Y_test,
+	       batch_size = batch_size)
+
+print('Testing Loss = {}, accuracy = {}'.format(testLoss,testAcc))
 
 
-
+#### Model Visualization
+from keras.utils.visualize_util import plot
+plot(model, to_file='model.png')
