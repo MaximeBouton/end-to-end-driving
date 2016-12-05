@@ -6,6 +6,8 @@ close all
 
 %% Regression: prelu 3 3 3 .60
 
+close all
+
 
 % load data
 
@@ -41,23 +43,19 @@ plotfixer
 % load data
 
 path = './prelu_3_2_3_60/';
-suffix = '_loss_prelu_3_2_3_6';
+suffix = '45';
 
 train = [load([path, 'train', suffix, '.dat']); ...
     load([path, 'train', suffix, '_cntd.dat'])];
-val = [load([path, 'val', suffix, '.dat']); ...
-    load([path, 'val', suffix, '_cntd.dat'])];
-test = [load([path, 'test', suffix, '.dat']); ...
-    load([path, 'test', suffix, '_cntd.dat'])];
-% val   = load([path, 'val',   suffix, '.dat']);
-% test  = load([path, 'test',  suffix, '.dat']); 
+val   = load([path, 'val',   suffix, '.dat']);
+test  = load([path, 'test',  suffix, '.dat']); 
 epoches = (1:numel(train))';
 
 
 % make plot
 
 
-f = figure(2);
+f = figure(1);
 set(f, 'Position', [200, 200, 800, 600]);
 plot(epoches, train, epoches, val, epoches, test);
 l = legend('\textbf{training loss}', '\textbf{validation loss}', '\textbf{test loss}');
@@ -73,7 +71,7 @@ plotfixer
 
 %% Classification: loss
 
-% close all
+close all
 
 % load data
 
@@ -89,7 +87,7 @@ epoches = (1:numel(train))';
 
 % make plot
 
-f = figure(3);
+f = figure(1);
 set(f, 'Position', [200, 200, 800, 600]);
 plot(epoches, train, epoches, val, epoches, test);
 l = legend('\textbf{training loss}', '\textbf{validation loss}', '\textbf{test loss}');
