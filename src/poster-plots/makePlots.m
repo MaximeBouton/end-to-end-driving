@@ -105,5 +105,39 @@ plotfixer
 
 
 
+%% Classification: accuracy
+
+% close all
+
+% load data
+
+path = './classification/';
+suffix = '_acc';
+
+train = load([path, 'train', suffix, '.dat']);
+val   = load([path, 'val',   suffix, '.dat']);
+test  = load([path, 'test',  suffix, '.dat']); 
+
+epoches = (1:numel(train))';
+
+
+% make plot
+
+f = figure(4);
+set(f, 'Position', [200, 200, 800, 600]);
+plot(epoches, train, epoches, val, epoches, test);
+l = legend('\textbf{training accuracy}', '\textbf{validation accuracy}', '\textbf{test accuracy}');
+set(l, 'Location', 'best', 'Interpreter', 'LaTex');
+xlabel('\textbf{epoch}', 'Interpreter', 'LaTex');
+ylabel('\textbf{accuracy}', 'Interpreter', 'LaTex');
+xlim([1, numel(epoches)])
+% ylim([0,2])
+% yticks(0:.5:2)
+set(gca,'TickLabelInterpreter','LaTex')
+grid()
+plotfixer
+
+
+
 
 
