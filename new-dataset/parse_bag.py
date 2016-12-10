@@ -1,3 +1,10 @@
+###############################################################################
+#
+#    EXTRACT DATA FROM .bag FILES
+#
+# save camera input as 'timestamp'.jpeg
+#and write steering report to steering.csv
+###############################################################################
 import rosbag
 import cv2
 import os
@@ -82,7 +89,3 @@ for topics, msg, t in rc_bag.read_messages(topics = ['/right_camera/image_color/
     print topics,msg.header.seq
 
 os.chdir(cur_path) # go back to current directory
-
-
-
-
