@@ -68,26 +68,26 @@ p = np.random.permutation(len(y))
 y = y[p]
 X = X[p,:,:,:]
 
-
+X /= 255.0
 ### Extract 1st Conv layer output 
 
-get_1st_layer_output = K.function([model.layers[0].input],[model.layers[0].output])
+#get_1st_layer_output = K.function([model.layers[0].input],[model.layers[0].output])
 
-FirstOutput = get_1st_layer_output([X[3739:3740,:,:,:]])[0]
-m,height,width, nFilters = FirstOutput.shape
+#FirstOutput = get_1st_layer_output([X[3739:3740,:,:,:]])[0]
+#m,height,width, nFilters = FirstOutput.shape
 
 
 # plot 8 filters output
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
-f, ax = plt.subplots(8)
-k = nFilters/8 
+#f, ax = plt.subplots(8)
+#k = nFilters/8 
 
-for i in range(8):
-    ax[i].imshow(FirstOutput[0,:,:,(i+1)*k-1])
-    ax[i].axis('off')
+#for i in range(8):
+#    ax[i].imshow(FirstOutput[0,:,:,(i+1)*k-1])
+#    ax[i].axis('off')
 
-plt.show()
+#plt.show()
 
 # Plot 8 filters for each layer 
 n_layers = 10 # stop befor FC layers
@@ -103,6 +103,15 @@ for i in range(n_layers):
         ax[j,i].imshow(output[0,:,:,j])
         ax[j,i].axis('off')
 
-
+f.savefig('layer_viz.png')
 f.show()
+
+
+
+# Get output 
+get_prediction = K.function([model.layers[0].input],[model.layers[-1].output])
+ypred =  get_prediction([X[3739:3740,:,:,:]])[0]
+print('Predicted output: {}'.format(ypred))
+print('Real command: {}'.format(y[3739]))
+
 
