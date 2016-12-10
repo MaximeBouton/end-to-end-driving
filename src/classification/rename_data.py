@@ -47,30 +47,30 @@ lastR = 1
 id = 0
 for i in range(nLeft):
     id += 1
-    
+
     timeL = imagesLeft[i].split('.')[0]
     timeC = imagesCenter[i].split('.')[0]
     timeR = imagesRight[i].split('.')[0]
     power = 7
     time = round((float(timeL) + float(timeC) + float(timeR))/3/pow(10,power))/pow(10,9-power)
-        
+
     srcL = srcPathLeft + imagesLeft[i]
     srcC = srcPathCenter + imagesCenter[i]
     srcR = srcPathRight + imagesRight[i]
-    
+
     name = sid % (id,)
-    
+
     dstL = dstPathLeft + name + ".jpeg"
     dstC = dstPathCenter + name + ".jpeg"
     dstR = dstPathRight + name + ".jpeg"
-    
+
     copyfile(srcL, dstL)
     copyfile(srcC, dstC)
     copyfile(srcR, dstR)
 
     f = open('../data/steering.csv','r')
     reader = csv.reader(f, delimiter=',')
-    maxRow = 37977
+    maxRow = 37977#XXX HARD CODED BE CAREFUL 
     rm = -999
     rp = -999
     r = lastR
@@ -83,7 +83,7 @@ for i in range(nLeft):
         r += 1
     f.close()
     lastR = r
-    
+
     seq            = 0
 #    rowTime        = 0
     steeringAngle  = 0
@@ -108,9 +108,6 @@ for i in range(nLeft):
     f = open('../data/cleanSteering.csv','a')
     f.write(row)
     f.close()
-    
+
     if id%100 == 0:
         print '#%05d/%05d [x]'%(id,nLeft)
-
-
-

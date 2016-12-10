@@ -1,10 +1,10 @@
-##############################################
+###############################################################################
 #
 # Script to resize images by factor 8 and output a feature vector
 #
-# 
+###############################################################################
 
-import cv2 
+import cv2
 import numpy as np
 
 # Location of the images
@@ -39,13 +39,10 @@ for (i,j) in enumerate(bigRange):
     imgId = '%05d' %(j+1)
     imgName = path+imgId+'.jpeg'
     image = cv2.imread(imgName)
-    # resize 
+    # resize
     resized_img = cv2.resize(image, (w_,h_), interpolation = cv2.INTER_AREA)
     Phi[i,:,:,:] = resized_img
 
 # Save feature matrix to file
-fname = 'resized_fetures' + str(red) + '.npy' 
+fname = 'resized_fetures' + str(red) + '.npy'
 np.save(fname,Phi)
-
-
-
