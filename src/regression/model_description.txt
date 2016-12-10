@@ -1,0 +1,4 @@
+0 : prelu | filter size 3 | 2 blocks | 3 FC | .00 training fraction
+1 : prelu | filter size 3 | 2 blocks | 3 FC | .60 training fraction
+2 : prelu | filter size 3 | 3 blocks | 3 FC | .60 training fraction
+3 : prelu | filter size 7 | 2 blocks | 3 FC | .60 training fraction
