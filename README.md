@@ -3,10 +3,13 @@ CS221-CS229 Class project. The objective is to predict steering command from raw
 
 ## Context
 
+
 ## Repository structure
 
-**src**: host the main program \\
-**plots**: contains some relevant illustrations\\
+**src**: host the main program
+
+**plots**: contains some relevant illustrations
+
 
 In the **src** folder, there are 2 subfolders:
 - **classification**: CNN architecture to predict steering direction
